@@ -1,0 +1,2211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://www.eds.com/schema/errorHandling" xmlns:tns="http://xmlns.example.com/1505935387434" xmlns:ns4="http://www.eds.com/schema/LoggingErrorHandlingHeader" xmlns:ns0="http://www.tibco.com/schemas/Clientes/Resources/EIM/Common/Schema.xsd" xmlns:ns3="http://www.compensar.com/canonicos" xmlns:ns1="http://www.compensar.com/services_psa080_administrarclientes" name="Untitled" targetNamespace="http://xmlns.example.com/1505935387434" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns="http://www.tibco.com/schemas/Clientes/Resources/EIM/Common/Schema.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.tibco.com/schemas/Clientes/Resources/EIM/Common/Schema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="headerMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userName" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="idAplicacion">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:minLength value="5" />
+                  <xs:maxLength value="30" />
+                  <xs:pattern value="[A-Z0-9_-]*" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="transactionID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.compensar.com/canonicos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="AdicionalesContacto">
+        <xs:annotation>
+          <xs:documentation>@Description: Atributos comunes a las operaciones.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="borradoEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="creacionFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="ultimaNovedadFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="identificador" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" default="0" form="unqualified" name="orden">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="zonaBogota">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Afiliacion">
+        <xs:annotation>
+          <xs:documentation>@Description: Estructura de datos no canonizada de una afiliación.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="beneficiarios">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="cantidadVinculacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="categoriaAfiliacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="motivoRetiro" type="ns3:MotivoRetiroMIN" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="clienteResponsable" type="ns3:ClienteResponsable" />
+          <xs:element minOccurs="0" form="unqualified" name="cmnt">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="actualizadoEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="nuevoEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="estado">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="finFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="ingresoEmpresaFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="inicioFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="modificacionFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="registroFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="retiroFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="soloServicio">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="textoVinculacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2000" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="valorVinculacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="variableRetiro">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="programa" type="ns3:Programa" />
+          <xs:element default="-1" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="motivoInactivacion" type="ns3:MotivoInactivacionREF" />
+          <xs:element minOccurs="0" default="-" form="unqualified" name="estadoAfiliacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="clienteID" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Cliente">
+        <xs:annotation>
+          <xs:documentation>@Description: Expresión canónica simplificada de un Cliente.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="legalID" type="xs:long" />
+          <xs:element form="unqualified" name="tipoIdentificacion" type="xs:int" />
+          <xs:element default="-1" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="datosPersona" type="ns3:DatosPersona" />
+          <xs:element minOccurs="0" form="unqualified" name="datosEmpresa" type="ns3:DatosEmpresa" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="sucursal" type="ns3:Sucursal" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="comunicacion" type="ns3:Comunicacion" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="contacto" type="ns3:Contacto" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="afiliacion" type="ns3:Afiliacion" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="radicacion" type="ns3:Radicacion" />
+          <xs:element minOccurs="0" form="unqualified" name="programa" type="ns3:Programa" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ClienteEmpresa">
+        <xs:annotation>
+          <xs:documentation>@Description: Expresión canónica simplificada de un cliente tipo empresa.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="legalID" type="xs:long" />
+          <xs:element default="-1" form="unqualified" name="tipoIdentificacion" type="xs:int" />
+          <xs:element default="-1" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="datosEmpresa" type="ns3:DatosEmpresa" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="sucursal" type="ns3:Sucursal" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="comunicacion" type="ns3:Comunicacion" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="contacto" type="ns3:Contacto" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="afiliacion" type="ns3:Afiliacion" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="radicacion" type="ns3:Radicacion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ClientePersona">
+        <xs:annotation>
+          <xs:documentation>@Description: Expresión canónica simplificada de un cliente tipo persona.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="legalID" type="xs:long" />
+          <xs:element form="unqualified" name="tipoIdentificacion" type="xs:int" />
+          <xs:element default="-1" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="datosPersona" type="ns3:DatosPersona" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="sucursal" type="ns3:Sucursal" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="comunicacion" type="ns3:Comunicacion" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="contacto" type="ns3:Contacto" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="afiliacion" type="ns3:Afiliacion" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="radicacion" type="ns3:Radicacion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ClienteResponsable">
+        <xs:annotation>
+          <xs:documentation>@Description: Estructura de datos de un responsable.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="tipoResponsable">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="centroCostosID" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="sucursalID" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="nombre">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="legalID" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="tipoIdentificacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Comunicacion">
+        <xs:annotation>
+          <xs:documentation>@Description: Permite establecer los canales de comunicación para ponerse en contacto con el cliente.
+Incluye sólo a los atributos que permiten identificar y dar un contexto mínimo a cada miembro de la entidad.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="telefono" type="ns3:TelefonoMIN" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="domicilio" type="ns3:Domicilio" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="correoElectronico">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="redesSociales">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="adicionalesContacto" type="ns3:AdicionalesContacto" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Contacto">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del contacto.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-" form="unqualified" name="tipoContacto">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-1" form="unqualified" name="orden">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DatosEmpresa">
+        <xs:annotation>
+          <xs:documentation>@Description: Expresión canónica simplificada de un ClienteEmpresa.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="digitoVerificadorLegal">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-" form="unqualified" name="razonSocial">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="tipoEmpresa">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-" form="unqualified" name="nombreComercial">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="300" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="constitucionFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:date" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="-" form="unqualified" name="tipoActividadEconomica">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="4" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="-1" form="unqualified" name="sectorEconomico">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="grupoEmpresarial">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="agremiacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="40" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="estadoAfiliacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="motivoInactivacion" type="ns3:MotivoInactivacionREF" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DatosPersona">
+        <xs:annotation>
+          <xs:documentation>@Description: Expresión canónica simplificada de un ClientePersona.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="nombrePrimero">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nombreSegundo">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="apellidoPrimero">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="apellidoSegundo">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nombre">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="foneticoID">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nuip">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="familia" type="ns3:Familia" />
+          <xs:element minOccurs="0" form="unqualified" name="demografia" type="ns3:Demografia" />
+          <xs:element minOccurs="0" form="unqualified" name="tipoVinculacion" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="categoriaAfiliacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="estadoAfiliacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="motivoInactivacion" type="ns3:MotivoInactivacionREF" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Demografia">
+        <xs:annotation>
+          <xs:documentation>Expresión canónica del tipo de cliente.
+Incluye todos los atributos que permiten describir de manera completa a cada miembro de la entidad.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="nacimientoFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:dateTime" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nacimientoLugar">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="-" form="unqualified" name="genero">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="-" form="unqualified" name="estadoCivil">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="cabezaFamiliaEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="gradoEscolaridad">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="titulosObtenidos">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="oficiosProfesiones">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="otrosEstudios">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="hijosEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="hijosCantidad">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="3" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="personasACargoCantidad">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="3" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="discapacidadEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DepartamentoMIN">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del departamento.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:DepartamentoREF">
+            <xs:sequence>
+              <xs:element minOccurs="0" form="unqualified" name="nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="DepartamentoREF">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del departamento.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-" form="unqualified" name="id">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Domicilio">
+        <xs:annotation>
+          <xs:documentation>Expresión canónica del domicilio.
+Incluye todos los atributos que permiten describir de manera completa a cada miembro de la entidad.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="barrio">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="casillaCorreo">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="50" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element form="unqualified" name="tipoDomicilio">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-" form="unqualified" name="domicilio">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-" form="unqualified" name="codigoPostal">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="50" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element form="unqualified" name="localidad" type="ns3:LocalidadMIN" />
+          <xs:element form="unqualified" name="tipoAreaGeografica">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Familia">
+        <xs:annotation>
+          <xs:documentation>Permite establecer relaciones entre el cliente y sus familiares, que son a su vez también clientes.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element form="unqualified" name="tipoParentesco">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="familiar" type="ns3:ClientePersona" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LocalidadMIN">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia de la localidad.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="id">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="8" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element form="unqualified" name="municipio" type="ns3:MunicipioMIN" />
+          <xs:element minOccurs="0" default="-" form="unqualified" name="nombre">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MotivoInactivacionMIN">
+        <xs:annotation>
+          <xs:documentation>Expresión mínima del motivo de inactivación.
+Incluye sólo a los atributos que permiten identificar y dar un contexto mínimo a cada miembro de la entidad.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:MotivoInactivacionREF">
+            <xs:sequence>
+              <xs:element default="-" form="unqualified" name="nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element minOccurs="0" default="0" form="unqualified" name="tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:int">
+                    <xs:totalDigits value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="MotivoInactivacionREF">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del motivo de inactivación.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="id" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MotivoRetiroMIN">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del motivo de retiro.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="id">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-" form="unqualified" name="nombre">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MunicipioMIN">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del municipio.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-1" form="unqualified" name="id">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="5" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nombre">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element form="unqualified" name="departamento" type="ns3:DepartamentoMIN" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Programa">
+        <xs:annotation>
+          <xs:documentation>@Description: Estructura de datos no canonizada de un programa expresado como una vinculación.
+
+@@Canonico: N/A</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="condicion">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="diasPaHisto">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="diasPaReAuto">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="tipoRadicacion">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="edadReAuto">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="creacionFecha">
+            <xs:simpleType>
+              <xs:restriction base="xs:date" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="genNuevoRadicadoEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="grupo">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-1" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="programaPadre" type="xs:long" />
+          <xs:element minOccurs="0" default="0" form="unqualified" name="indicadorProgramaEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="indicadorVinculacionEstado" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" default="false" form="unqualified" name="manejaResponsable1PersonaEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="manejaResponsable2EmpresaEstado">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="motivoRetiroOpcional" type="ns3:MotivoRetiroMIN" />
+          <xs:element minOccurs="0" default="0" form="unqualified" name="nivelAnterior">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="clientePropietarioID" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="tipoParentesco">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="sigla">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="tipoIdClientePropietario">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nombrePrograma">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nombreProgramaPadre">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="diasParaReactivacion" type="xs:long" />
+          <xs:element minOccurs="0" default="false" form="unqualified" name="esPersona">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="requisitos">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="requisito" type="ns3:Requisito" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Radicacion">
+        <xs:annotation>
+          <xs:documentation>@Description: Estructura de datos no canonizada de una radicación.
+
+@@Canonico: N/A</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="accGrupo">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="compRequisitos">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="comportamientoRequisito">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="configuracionRequisito">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="configuracionRequisito1">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="datosConfiguracionRequisito">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="decCampoFecha1" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="decCampoFecha2" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="descripcion">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="estadoDato">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="grupoDato">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="false" form="unqualified" name="guardarTramite">
+            <xs:simpleType>
+              <xs:restriction base="xs:boolean" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="idCampoNumerico">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-1" form="unqualified" name="id" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="indicadorEstadoRequisito">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="numeroRadicado" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="sigla">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="subGrupoDato">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" default="0" form="unqualified" name="tipoAccion">
+            <xs:simpleType>
+              <xs:restriction base="xs:int">
+                <xs:totalDigits value="10" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="requisito" type="ns3:Requisito" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Requisito">
+        <xs:annotation>
+          <xs:documentation>@Description: Estructura de datos no canonizada de un requisito.
+
+@@Canonico: N/A</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="accGrupo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="campoAlfa" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="campoBooleano" type="xs:boolean" />
+          <xs:element minOccurs="0" form="unqualified" name="campoFecha1" type="xs:dateTime" />
+          <xs:element minOccurs="0" form="unqualified" name="campoFecha2" type="xs:dateTime" />
+          <xs:element minOccurs="0" form="unqualified" name="campoNumerico" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="decCampoFecha1" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="decCampoFecha2" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="estadoDato" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="grupoDato" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="guardarTramite" type="xs:boolean" />
+          <xs:element minOccurs="0" form="unqualified" name="idCampoNumerico" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="idRequisito" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="nombre" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="numeroRadicado" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="sigla" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="subGrupoDato" type="xs:int" />
+          <xs:element minOccurs="0" form="unqualified" name="tipoAccion" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Sucursal">
+        <xs:annotation>
+          <xs:documentation>Permite establecer relaciones entre el cliente y sus sucursales, que son a su vez también clientes.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="id" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="sucursalID" type="xs:unsignedLong" />
+          <xs:element minOccurs="0" form="unqualified" name="centroCostosID">
+            <xs:simpleType>
+              <xs:restriction base="xs:unsignedLong" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="nivelAdicional">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="razonSocial">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" form="unqualified" name="mantenimiento">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TelefonoMIN">
+        <xs:annotation>
+          <xs:documentation>Expresión mínima del teléfono.
+Incluye sólo a los atributos que permiten identificar y dar un contexto mínimo a cada miembro de la entidad.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element default="-" form="unqualified" name="tipoTelefono">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="2" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element default="-1" form="unqualified" name="telefono" type="xs:long" />
+          <xs:element minOccurs="0" form="unqualified" name="extensionTelefono" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AdicionalesContacto" type="ns3:AdicionalesContacto" />
+      <xs:element name="Afiliacion" type="ns3:Afiliacion" />
+      <xs:element name="Cliente" type="ns3:Cliente" />
+      <xs:element name="ClienteEmpresa" type="ns3:ClienteEmpresa" />
+      <xs:element name="ClientePersona" type="ns3:ClientePersona" />
+      <xs:element name="ClienteResponsable" type="ns3:ClienteResponsable" />
+      <xs:element name="Comunicacion" type="ns3:Comunicacion" />
+      <xs:element name="Contacto" type="ns3:Contacto" />
+      <xs:element name="DatosEmpresa" type="ns3:DatosEmpresa" />
+      <xs:element name="DatosPersona" type="ns3:DatosPersona" />
+      <xs:element name="Demografia" type="ns3:Demografia" />
+      <xs:element name="DepartamentoMIN" type="ns3:DepartamentoMIN" />
+      <xs:element name="DepartamentoREF" type="ns3:DepartamentoREF" />
+      <xs:element name="Domicilio" type="ns3:Domicilio" />
+      <xs:element name="Familia" type="ns3:Familia" />
+      <xs:element name="LocalidadMIN" type="ns3:LocalidadMIN" />
+      <xs:element name="MotivoInactivacionMIN" type="ns3:MotivoInactivacionMIN" />
+      <xs:element name="MotivoInactivacionREF" type="ns3:MotivoInactivacionREF" />
+      <xs:element name="MotivoRetiroMIN" type="ns3:MotivoRetiroMIN" />
+      <xs:element name="MunicipioMIN" type="ns3:MunicipioMIN" />
+      <xs:element name="Programa" type="ns3:Programa" />
+      <xs:element name="Radicacion" type="ns3:Radicacion" />
+      <xs:element name="Requisito" type="ns3:Requisito" />
+      <xs:element name="Sucursal" type="ns3:Sucursal" />
+      <xs:element name="TelefonoMIN" type="ns3:TelefonoMIN" />
+      <xs:complexType name="UsuarioREF">
+        <xs:annotation>
+          <xs:documentation>Expresión de referencia del usuario.
+Incluye sólo a los atributos que identifican a cada miembro de la entidad de manera unívoca.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element form="unqualified" name="id">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UsuarioREF" type="ns3:UsuarioREF" />
+    </xs:schema>
+    <xs:schema xmlns:Header="http://www.eds.com/schema/LoggingErrorHandlingHeader" xmlns:edsErrorHandling="http://www.eds.com/schema/errorHandling" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.eds.com/schema/errorHandling" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://www.eds.com/schema/LoggingErrorHandlingHeader" />
+      <xs:complexType name="ErrorReport">
+        <xs:sequence>
+          <xs:element minOccurs="0" form="unqualified" name="StackTrace" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="Msg" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="FullClass" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="Class" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="ProcessStack" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="MsgCode" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="Data" type="edsErrorHandling:anydata" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element name="Header" type="Header:Header" />
+          <xs:element minOccurs="0" form="unqualified" name="ExceptionUniqueID" type="xs:string" />
+          <xs:element form="unqualified" name="Category" type="xs:string" />
+          <xs:element form="unqualified" name="Severity" type="xs:string" />
+          <xs:element form="unqualified" name="Code" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="Message" type="xs:string" />
+          <xs:element minOccurs="0" form="unqualified" name="MessageData" type="xs:string" />
+          <xs:element minOccurs="0" name="ErrorReport" type="edsErrorHandling:ErrorReport" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RetryErrorRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="errorId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RetryRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="destination" type="xs:string" />
+          <xs:element minOccurs="0" name="retryCount" type="xs:integer" />
+          <xs:element minOccurs="0" name="timeBetweenRetries" type="xs:integer" />
+          <xs:element minOccurs="0" form="unqualified" name="Message" type="edsErrorHandling:anydata" />
+          <xs:element minOccurs="0" name="Exception" type="edsErrorHandling:Exception" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="anydata">
+        <xs:sequence>
+          <xs:any namespace="##any" processContents="lax" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ErrorReport" type="edsErrorHandling:ErrorReport" />
+      <xs:element name="Exception" type="edsErrorHandling:Exception" />
+      <xs:element name="RetryErrorRequest" type="edsErrorHandling:RetryErrorRequest" />
+      <xs:element name="RetryRequest" type="edsErrorHandling:RetryRequest" />
+    </xs:schema>
+    <xsd:schema xmlns="http://www.eds.com/schema/LoggingErrorHandlingHeader" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.eds.com/schema/LoggingErrorHandlingHeader" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="Header">
+        <xsd:sequence>
+          <xsd:element name="ServiceID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ServiceName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="ComponentName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="HostName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Timestamp" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TransactionDomain" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TransactionType" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TransactionID" type="xsd:string" />
+          <xsd:element minOccurs="0" name="TopicName" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Principal" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Header" type="ns4:Header" />
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.compensar.com/services_psa080_administrarclientes" xmlns:ns1="http://www.compensar.com/canonicos" xmlns:dkl="http://www.compensar.com/services_psa080_administrarclientes" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.compensar.com/services_psa080_administrarclientes" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.compensar.com/canonicos" />
+      <xsd:import namespace="http://www.compensar.com/canonicos" />
+      <xsd:import namespace="http://www.compensar.com/canonicos" />
+      <xsd:import namespace="http://www.compensar.com/canonicos" />
+      <xsd:import namespace="http://www.compensar.com/canonicos" />
+      <xsd:annotation>
+        <xsd:documentation>Version: 1.0</xsd:documentation>
+      </xsd:annotation>
+      <xsd:annotation>
+        <xsd:documentation>Fecha de inicio de vigencia: 01-Ene-2012</xsd:documentation>
+      </xsd:annotation>
+      <xsd:annotation>
+        <xsd:documentation>Fecha de fin de vigencia: </xsd:documentation>
+      </xsd:annotation>
+      <xsd:annotation>
+        <xsd:documentation>Comentarios: versión inicial.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:annotation>
+        <xsd:documentation>Comentarios: 13/01/2014-[Julian Carreño] -&gt; Se realiza cambios en los canonicos. Se dividen los canonicos en archivos independientes y se modifican entidades con un solo campo Id.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexType name="ActualizarContacto">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para actualizar un contacto de un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="cliente" type="ns1:Cliente" />
+          <xsd:element name="atributosComunes" type="dkl:AtributosComunes" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ActualizarContactoRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ActualizarContacto.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="actualizarContacto" type="dkl:ActualizarContacto" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ActualizarContactoResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ActualizarContacto.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ActualizarEstadoRadicacion">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para actualizar el estado de radicación un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="numeroRadicado" type="xsd:unsignedLong" />
+          <xsd:element minOccurs="0" name="estadoAfiliacion">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="2" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ActualizarEstadoRadicacionRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ActualizarEstadoRadicacion.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="actualizarEstadoRadicacion" type="dkl:ActualizarEstadoRadicacion" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ActualizarEstadoRadicacionResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ActualizarEstadoRadicacion.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="AdministrarClientes">
+        <xsd:annotation>
+          <xsd:documentation>@ServiceOwner: juan.becerra@hp.com
+@Domain: prm020
+@Taxonomy: Actividad
+@Version: 1.0
+@ServiceDependencies: N/A
+@ComponentDependencies: N/A
+@Transports: SOAP
+@Type: 
+@Description: Administración de clientes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:complexType>
+      <xsd:complexType name="AtributosComunes">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Atributos comunes a las operaciones.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="comunEntrePE">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="100" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="fidelizacionFecha">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:dateTime" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="ubicaciones">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="100" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="false" name="beneficiarioEstado">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:boolean" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="false" name="empresaEstado">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:boolean" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="false" name="saltarFoneticoEstado">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:boolean" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="0" name="indice">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="10" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarMotivosInactivacion">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar los motivos de inactivación.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarMotivosInactivacionRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ConsultarMotivosInactivacion.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="consultarMotivosInactivacion" type="dkl:ConsultarMotivosInactivacion" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarMotivosInactivacionResp">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar los motivos de inactivación.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="motivoInactivacion" type="ns1:MotivoInactivacionMIN" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarMotivosInactivacionResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ConsultarMotivosInactivacion.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="consultarMotivosInactivacion" type="dkl:ConsultarMotivosInactivacionResp" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosHistorico">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar el histórico de requisitos para radicar un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element default="-1" name="clienteID" type="xsd:long" />
+          <xsd:element default="-1" name="requisitoID" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosHistoricoRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ConsultarRequisitosHistorico.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="consultarRequisitosHistorico" type="dkl:ConsultarRequisitosHistorico" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosHistoricoResp">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar el histórico de requisitos para radicar un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="radicacion" type="ns1:Radicacion" />
+          <xsd:element minOccurs="0" name="usuario" type="ns1:UsuarioREF" />
+          <xsd:element minOccurs="0" name="campoMan">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="0" name="ultimaNovedadFecha">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="10" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="0" name="creacionFecha">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="10" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="estadoRadicacion">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="60" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="historico">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="100" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosHistoricoResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ConsultarRequisitosHistorico.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="unbounded" name="consultarRequisitosHistorico" type="dkl:ConsultarRequisitosHistoricoResp" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosRadicacionCliente">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar los requisitos para la radicacion un cliente..</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element default="-1" name="clienteID" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosRadicacionClienteRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ConsultarRequisitosRadicacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="consultarRequisitosRadicacionCliente" type="dkl:ConsultarRequisitosRadicacionCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosRadicacionClienteResp">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar los requisitos para la radicacion un cliente..</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="clienteID" type="xsd:long" />
+          <xsd:element minOccurs="0" name="nuip">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="20" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="tipoIdentificacion">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="1" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="radicacion" type="ns1:Radicacion" />
+          <xsd:element minOccurs="0" name="usuario" type="ns1:UsuarioREF" />
+          <xsd:element minOccurs="0" name="campoMan">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="1" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="0" name="ultimaNovedadFecha1">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="10" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="0" name="ultimaNovedadFecha2">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="10" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" default="0" name="creacionFecha">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:int">
+                <xsd:totalDigits value="10" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="estadoRadicacion">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="60" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarRequisitosRadicacionClienteResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ConsultarRequisitosRadicacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="unbounded" name="consultarRequisitosRadicacionCliente" type="dkl:ConsultarRequisitosRadicacionClienteResp" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVariablesAsociadas">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar las variables asociadas.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="idParametro" type="xsd:integer" />
+          <xsd:element name="nombreTabla" type="xsd:string" />
+          <xsd:element name="descripcion" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVariablesAsociadasRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ConsultarVariablesAsociadas.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="consultarVariablesAsociadas" type="dkl:ConsultarVariablesAsociadas" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVariablesAsociadasResp">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar las variables asociadas.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="variablesAsociadas">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element minOccurs="0" name="id" type="xsd:integer" />
+                <xsd:element minOccurs="0" name="nombreTabla" type="xsd:string" />
+                <xsd:element minOccurs="0" name="codigo" type="xsd:integer" />
+                <xsd:element minOccurs="0" name="descripcion" type="xsd:string" />
+                <xsd:element minOccurs="0" name="estado" type="xsd:string" />
+                <xsd:element minOccurs="0" name="finRango" type="xsd:integer" />
+                <xsd:element minOccurs="0" name="indicador" type="xsd:integer" />
+                <xsd:element minOccurs="0" name="descAdicional" type="xsd:string" />
+                <xsd:element minOccurs="0" name="valorDecimal" type="xsd:decimal" />
+                <xsd:element minOccurs="0" name="usuarioResponsable" type="xsd:integer" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVariablesAsociadasResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ConsultarVariablesAsociadas.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="consultarVariablesAsociadas" type="dkl:ConsultarVariablesAsociadasResp" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVinculacionesCliente">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar las vinculaciones de un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="clienteID" type="xsd:unsignedLong" />
+          <xsd:element minOccurs="0" name="cmnt">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="100" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVinculacionesClienteRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación ConsultarVinculacionesCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="consultarVinculacionesCliente" type="dkl:ConsultarVinculacionesCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVinculacionesClienteResp">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para consultar las vinculaciones de un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="afiliacion" type="ns1:Afiliacion" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarVinculacionesClienteResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación ConsultarVinculacionesCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="consultarVinculacionesCliente" type="dkl:ConsultarVinculacionesClienteResp" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CrearContacto">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para crear un contacto para un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="cliente" type="ns1:Cliente" />
+          <xsd:element name="atributosComunes" type="dkl:AtributosComunes" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CrearContactoRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación CrearContacto.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="crearContacto" type="dkl:CrearContacto" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CrearContactoResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación CrearContacto.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CrearVinculacionCliente">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para crear una vinculacion para un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="cliente" type="ns1:Cliente" />
+          <xsd:element name="atributosComunes" type="dkl:AtributosComunes" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CrearVinculacionClienteRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación CrearVinculacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="crearVinculacionCliente" type="dkl:CrearVinculacionCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CrearVinculacionClienteResp">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para crear una vinculacion para un cliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="cliente" type="ns1:Cliente" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CrearVinculacionClienteResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación CrearVinculacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="crearVinculacionCliente" type="dkl:CrearVinculacionClienteResp" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Credenciales">
+        <xsd:annotation>
+          <xsd:documentation>Credenciales que permiten definir si el pedido contenido en la operación tiene los permisos necesarios para ser ejecutado.
+Todos sus atributos se encuentran encriptados.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="credencialesMensaje">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="4000" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProcesarActualizacionVinculacionRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación CrearVinculacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="actualizarVinculacionCliente" type="dkl:CrearVinculacionCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ProcesarActualizacionVinculacionResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación CrearVinculacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ProcesarRadicacionRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación RadicarCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="radicarCliente" type="dkl:RadicarCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ProcesarRadicacionResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación RadicarCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ProcesarVinculacionRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación CrearVinculacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="crearVinculacionCliente" type="dkl:CrearVinculacionCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ProcesarVinculacionResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación CrearVinculacionCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="RadicarCliente">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Estructura de datos para crear un ClientePersona.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="cliente" type="ns1:Cliente" />
+          <xsd:element name="atributosComunes" type="dkl:AtributosComunes" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RadicarClienteRequest">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Pedido del servicio al ejecutarse la operación RadicarCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:RequestGenerico">
+            <xsd:sequence>
+              <xsd:element name="radicarCliente" type="dkl:RadicarCliente" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="RadicarClienteResponse">
+        <xsd:annotation>
+          <xsd:documentation>@Description: Respuesta del servicio al ejecutarse la operación RadicarCliente.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="dkl:ResponseGenerico" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="RequestGenerico">
+        <xsd:annotation>
+          <xsd:documentation>@Description: pedido genérico.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element name="credenciales" type="dkl:Credenciales" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResponseGenerico">
+        <xsd:annotation>
+          <xsd:documentation>@Description: </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element default="false" name="resultadoOperacion">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:boolean" />
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="resultadoMensaje">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="4000" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ActualizarContacto" type="dkl:ActualizarContacto" />
+      <xsd:element name="ActualizarContactoRequest" type="dkl:ActualizarContactoRequest" />
+      <xsd:element name="ActualizarContactoResponse" type="dkl:ActualizarContactoResponse" />
+      <xsd:element name="ActualizarEstadoRadicacion" type="dkl:ActualizarEstadoRadicacion" />
+      <xsd:element name="ActualizarEstadoRadicacionRequest" type="dkl:ActualizarEstadoRadicacionRequest" />
+      <xsd:element name="ActualizarEstadoRadicacionResponse" type="dkl:ActualizarEstadoRadicacionResponse" />
+      <xsd:element name="AdministrarClientes" type="dkl:AdministrarClientes" />
+      <xsd:element name="AtributosComunes" type="dkl:AtributosComunes" />
+      <xsd:element name="ConsultarMotivosInactivacion" type="dkl:ConsultarMotivosInactivacion" />
+      <xsd:element name="ConsultarMotivosInactivacionRequest" type="dkl:ConsultarMotivosInactivacionRequest" />
+      <xsd:element name="ConsultarMotivosInactivacionResp" type="dkl:ConsultarMotivosInactivacionResp" />
+      <xsd:element name="ConsultarMotivosInactivacionResponse" type="dkl:ConsultarMotivosInactivacionResponse" />
+      <xsd:element name="ConsultarRequisitosHistorico" type="dkl:ConsultarRequisitosHistorico" />
+      <xsd:element name="ConsultarRequisitosHistoricoRequest" type="dkl:ConsultarRequisitosHistoricoRequest" />
+      <xsd:element name="ConsultarRequisitosHistoricoResp" type="dkl:ConsultarRequisitosHistoricoResp" />
+      <xsd:element name="ConsultarRequisitosHistoricoResponse" type="dkl:ConsultarRequisitosHistoricoResponse" />
+      <xsd:element name="ConsultarRequisitosRadicacionCliente" type="dkl:ConsultarRequisitosRadicacionCliente" />
+      <xsd:element name="ConsultarRequisitosRadicacionClienteRequest" type="dkl:ConsultarRequisitosRadicacionClienteRequest" />
+      <xsd:element name="ConsultarRequisitosRadicacionClienteResp" type="dkl:ConsultarRequisitosRadicacionClienteResp" />
+      <xsd:element name="ConsultarRequisitosRadicacionClienteResponse" type="dkl:ConsultarRequisitosRadicacionClienteResponse" />
+      <xsd:element name="ConsultarVariablesAsociadas" type="dkl:ConsultarVariablesAsociadas" />
+      <xsd:element name="ConsultarVariablesAsociadasRequest" type="dkl:ConsultarVariablesAsociadasRequest" />
+      <xsd:element name="ConsultarVariablesAsociadasResp" type="dkl:ConsultarVariablesAsociadasResp" />
+      <xsd:element name="ConsultarVariablesAsociadasResponse" type="dkl:ConsultarVariablesAsociadasResponse" />
+      <xsd:element name="ConsultarVinculacionesCliente" type="dkl:ConsultarVinculacionesCliente" />
+      <xsd:element name="ConsultarVinculacionesClienteRequest" type="dkl:ConsultarVinculacionesClienteRequest" />
+      <xsd:element name="ConsultarVinculacionesClienteResp" type="dkl:ConsultarVinculacionesClienteResp" />
+      <xsd:element name="ConsultarVinculacionesClienteResponse" type="dkl:ConsultarVinculacionesClienteResponse" />
+      <xsd:element name="CrearContacto" type="dkl:CrearContacto" />
+      <xsd:element name="CrearContactoRequest" type="dkl:CrearContactoRequest" />
+      <xsd:element name="CrearContactoResponse" type="dkl:CrearContactoResponse" />
+      <xsd:element name="CrearVinculacionCliente" type="dkl:CrearVinculacionCliente" />
+      <xsd:element name="CrearVinculacionClienteRequest" type="dkl:CrearVinculacionClienteRequest" />
+      <xsd:element name="CrearVinculacionClienteResp" type="dkl:CrearVinculacionClienteResp" />
+      <xsd:element name="CrearVinculacionClienteResponse" type="dkl:CrearVinculacionClienteResponse" />
+      <xsd:element name="Credenciales" type="dkl:Credenciales" />
+      <xsd:element name="ProcesarActualizacionVinculacionRequest" type="dkl:ProcesarActualizacionVinculacionRequest" />
+      <xsd:element name="ProcesarActualizacionVinculacionResponse" type="dkl:ProcesarActualizacionVinculacionResponse" />
+      <xsd:element name="ProcesarRadicacionRequest" type="dkl:ProcesarRadicacionRequest" />
+      <xsd:element name="ProcesarRadicacionResponse" type="dkl:ProcesarRadicacionResponse" />
+      <xsd:element name="ProcesarVinculacionRequest" type="dkl:ProcesarVinculacionRequest" />
+      <xsd:element name="ProcesarVinculacionResponse" type="dkl:ProcesarVinculacionResponse" />
+      <xsd:element name="RadicarCliente" type="dkl:RadicarCliente" />
+      <xsd:element name="RadicarClienteRequest" type="dkl:RadicarClienteRequest" />
+      <xsd:element name="RadicarClienteResponse" type="dkl:RadicarClienteResponse" />
+      <xsd:element name="RequestGenerico" type="dkl:RequestGenerico" />
+      <xsd:element name="ResponseGenerico" type="dkl:ResponseGenerico" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="headerMessage">
+    <wsdl:part name="part1" element="ns0:headerMessage" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ProcesarVinculacion_inputMessage">
+    <wsdl:part name="request" element="ns1:ProcesarVinculacionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ProcesarVinculacion_outputMessage">
+    <wsdl:part name="ProcesarVinculacion_outputPart" element="ns1:ProcesarVinculacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="errorMessage">
+    <wsdl:part name="part1" element="ns2:Exception" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ProcesarActualizacionVinculacion_inputMessage">
+    <wsdl:part name="request" element="ns1:ProcesarActualizacionVinculacionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ProcesarActualizacionVinculacion_outputMessage">
+    <wsdl:part name="ProcesarActualizacionVinculacion_outputPart" element="ns1:ProcesarActualizacionVinculacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ActualizarEstadoRadicacion_inputMessage">
+    <wsdl:part name="request" element="ns1:ActualizarEstadoRadicacionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ActualizarEstadoRadicacion_outputMessage">
+    <wsdl:part name="ActualizarEstadoRadicacion_outputPart" element="ns1:ActualizarEstadoRadicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_CrearContacto_inputMessage">
+    <wsdl:part name="request" element="ns1:CrearContactoRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_CrearContacto_outputMessage">
+    <wsdl:part name="CrearContacto_outputPart" element="ns1:CrearContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarRequisitosRadicacionCliente_inputMessage">
+    <wsdl:part name="part1" element="ns1:ConsultarRequisitosRadicacionClienteRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarRequisitosRadicacionCliente_outputMessage">
+    <wsdl:part name="ConsultarRequisitosRadicacionCliente_outputPart" element="ns1:ConsultarRequisitosRadicacionClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarRequisitosHistorico_inputMessage">
+    <wsdl:part name="request" element="ns1:ConsultarRequisitosHistoricoRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarRequisitosHistorico_outputMessage">
+    <wsdl:part name="ConsultarRequisitosHistorico_outputPart" element="ns1:ConsultarRequisitosHistoricoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdminisrarClientes_ConsultarVariablesAsociadas_inputMessage">
+    <wsdl:part name="request" element="ns1:ConsultarVariablesAsociadasRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdminisrarClientes_ConsultarVariablesAsociadas_outputMessage">
+    <wsdl:part name="ConsultarVariablesAsociadasn_outputPart" element="ns1:ConsultarVariablesAsociadasResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarMotivosInactivacion_inputMessage">
+    <wsdl:part name="request" element="ns1:ConsultarMotivosInactivacionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarMotivosInactivacion_outputMessage">
+    <wsdl:part name="ConsultarMotivosInactivacion_outputPart" element="ns1:ConsultarMotivosInactivacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_RadicarCliente_inputMessage">
+    <wsdl:part name="request" element="ns1:RadicarClienteRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_RadicarCliente_outputMessage">
+    <wsdl:part name="RadicarCliente_outputPart" element="ns1:RadicarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ProcesarRadicacion_inputMessage">
+    <wsdl:part name="request" element="ns1:ProcesarRadicacionRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ProcesarRadicacion_outputMessage">
+    <wsdl:part name="ProcesarRadicacion_outputPart" element="ns1:ProcesarRadicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_CrearVinculacionCliente_inputMessage">
+    <wsdl:part name="request" element="ns1:CrearVinculacionClienteRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_CrearVinculacionCliente_outputMessage">
+    <wsdl:part name="CrearVinculacionCliente_outputPart" element="ns1:CrearVinculacionClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarVinculacionesCliente_inputMessage">
+    <wsdl:part name="request" element="ns1:ConsultarVinculacionesClienteRequest" />
+  </wsdl:message>
+  <wsdl:message name="AdministrarClientes_ConsultarVinculacionesCliente_outputMessage">
+    <wsdl:part name="ConsultarVinculacionesCliente_outputPart" element="ns1:ConsultarVinculacionesClienteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AdministrarClientes">
+    <wsdl:operation name="ProcesarVinculacion">
+      <wsdl:input message="tns:AdministrarClientes_ProcesarVinculacion_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ProcesarVinculacion_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcesarActualizacionVinculacion">
+      <wsdl:input message="tns:AdministrarClientes_ProcesarActualizacionVinculacion_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ProcesarActualizacionVinculacion_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarEstadoRadicacion">
+      <wsdl:input message="tns:AdministrarClientes_ActualizarEstadoRadicacion_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ActualizarEstadoRadicacion_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearContacto">
+      <wsdl:input message="tns:AdministrarClientes_CrearContacto_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_CrearContacto_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarRequisitosRadicacion">
+      <wsdl:input message="tns:AdministrarClientes_ConsultarRequisitosRadicacionCliente_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ConsultarRequisitosRadicacionCliente_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarRequisitosHistorico">
+      <wsdl:input message="tns:AdministrarClientes_ConsultarRequisitosHistorico_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ConsultarRequisitosHistorico_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarVariablesAsociadas">
+      <wsdl:input message="tns:AdminisrarClientes_ConsultarVariablesAsociadas_inputMessage" />
+      <wsdl:output message="tns:AdminisrarClientes_ConsultarVariablesAsociadas_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarMotivosInactivacion">
+      <wsdl:input message="tns:AdministrarClientes_ConsultarMotivosInactivacion_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ConsultarMotivosInactivacion_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Radicar">
+      <wsdl:input message="tns:AdministrarClientes_RadicarCliente_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_RadicarCliente_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcesarRadicacion">
+      <wsdl:input message="tns:AdministrarClientes_ProcesarRadicacion_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ProcesarRadicacion_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearVinculacion">
+      <wsdl:input message="tns:AdministrarClientes_CrearVinculacionCliente_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_CrearVinculacionCliente_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarVinculaciones">
+      <wsdl:input message="tns:AdministrarClientes_ConsultarVinculacionesCliente_inputMessage" />
+      <wsdl:output message="tns:AdministrarClientes_ConsultarVinculacionesCliente_outputMessage" />
+      <wsdl:fault name="fault1" message="tns:errorMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdministrarClientesEndpointBinding" type="tns:AdministrarClientes">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ProcesarVinculacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ProcesarVinculacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ProcesarVinculacion_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ProcesarActualizacionVinculacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ProcesarActualizacionVinculacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ProcesarActualizacionVinculacion_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarEstadoRadicacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ActualizarEstadoRadicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ActualizarEstadoRadicacion_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CrearContacto">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/CrearContacto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="CrearContacto_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarRequisitosRadicacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ConsultarRequisitosRadicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="part1" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ConsultarRequisitosRadicacionCliente_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarRequisitosHistorico">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ConsultarRequisitosHistorico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ConsultarRequisitosHistorico_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarVariablesAsociadas">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent//ConsultarVariablesAsociadas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ConsultarVariablesAsociadasn_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarMotivosInactivacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ConsultarMotivosInactivacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ConsultarMotivosInactivacion_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Radicar">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/Radicar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="RadicarCliente_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ProcesarRadicacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ProcesarRadicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ProcesarRadicacion_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CrearVinculacion">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/CrearVinculacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="CrearVinculacionCliente_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarVinculaciones">
+      <soap:operation soapAction="/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint/ConsultarVinculaciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+        <soap:header message="tns:headerMessage" part="part1" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="ConsultarVinculacionesCliente_outputPart" />
+      </wsdl:output>
+      <wsdl:fault name="fault1">
+        <soap:fault use="literal" name="fault1" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdministrarClientesService.serviceagent">
+    <wsdl:port name="AdministrarClientesEndpoint" binding="tns:AdministrarClientesEndpointBinding">
+      <soap:address location="http://vmprurhesb01:13123/Services/Activity/AdministrarClientes/WS/Implementation/AdministrarClientes.serviceagent/AdministrarClientesEndpoint" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
