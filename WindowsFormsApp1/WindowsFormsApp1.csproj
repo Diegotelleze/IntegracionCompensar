@@ -48,11 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\CompensarReference1\Reference.cs">
+    <Compile Include="Connected Services\CompensarReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Contract.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,78 +73,79 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Connected Services\CompensarReference1\Untitled.wsdl" />
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ActualizarEstadoRadicacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\Untitled.wsdl" />
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ActualizarEstadoRadicacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ActualizarEstadoRadicacionResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ActualizarEstadoRadicacionResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarMotivosInactivacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarMotivosInactivacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarMotivosInactivacionResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarMotivosInactivacionResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarRequisitosHistoricoResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarRequisitosHistoricoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarRequisitosHistoricoResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarRequisitosHistoricoResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarRequisitosRadicacionClienteResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarRequisitosRadicacionClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarRequisitosRadicacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarRequisitosRadicacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarVariablesAsociadasResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarVariablesAsociadasResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarVariablesAsociadasResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarVariablesAsociadasResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarVinculacionesClienteResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarVinculacionesClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ConsultarVinculacionesResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ConsultarVinculacionesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.CrearContactoResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.CrearContactoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.CrearContactoResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.CrearContactoResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.CrearVinculacionClienteResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.CrearVinculacionClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.CrearVinculacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.CrearVinculacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ProcesarActualizacionVinculacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ProcesarActualizacionVinculacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ProcesarActualizacionVinculacionResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ProcesarActualizacionVinculacionResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ProcesarRadicacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ProcesarRadicacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ProcesarRadicacionResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ProcesarRadicacionResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ProcesarVinculacionResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ProcesarVinculacionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.ProcesarVinculacionResponse1.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.ProcesarVinculacionResponse1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.RadicarClienteResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.RadicarClienteResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CompensarReference1\WindowsFormsApp1.CompensarReference1.RadicarResponse.datasource">
+    <None Include="Connected Services\CompensarReference\WindowsFormsApp1.CompensarReference.RadicarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
@@ -163,16 +165,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CompensarReference1\" />
+    <None Include="Resources\AdministrarClientes-Desvincular-Empresa-Request.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CompensarReference1\configuration91.svcinfo" />
+    <WCFMetadataStorage Include="Connected Services\CompensarReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CompensarReference1\configuration.svcinfo" />
+    <None Include="Connected Services\CompensarReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CompensarReference1\Reference.svcmap">
+    <None Include="Connected Services\CompensarReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CompensarReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

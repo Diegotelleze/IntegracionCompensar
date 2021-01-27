@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,222 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AdministrarClientes_Desvincular_Empresa_Request" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AdministrarClientes-Desvincular-Empresa-Request.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Xml" xml:space="preserve">
+    <value>&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.tibco.com/schemas/Clientes/Resources/EIM/Common/Schema.xsd" 
+xmlns:ser="http://www.compensar.com/services_psa080_administrarclientes"&gt;
+   &lt;soapenv:Header&gt;
+      &lt;sch:headerMessage&gt;
+         &lt;sch:userName&gt;1022948279&lt;/sch:userName&gt;
+         &lt;sch:idAplicacion&gt;SWPR108&lt;/sch:idAplicacion&gt;
+      &lt;/sch:headerMessage&gt;
+   &lt;/soapenv:Header&gt;
+   &lt;soapenv:Body&gt;
+      &lt;ser:CrearVinculacionClienteRequest&gt;
+         &lt;credenciales/&gt;
+         &lt;crearVinculacionCliente&gt;
+            &lt;cliente&gt;
+               &lt;legalID&gt;900877788&lt;/legalID&gt;
+               &lt;tipoIdentificacion&gt;2&lt;/tipoIdentificacion&gt;
+               &lt;id&gt;9999805069127038&lt;/id&gt;
+               &lt;datosEmpresa&gt;
+                  &lt;razonSocial&gt;-&lt;/razonSocial&gt;
+                  &lt;nombreComercial&gt;-&lt;/nombreComercial&gt;
+                  &lt;motivoInactivacion&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                  &lt;/motivoInactivacion&gt;
+               &lt;/datosEmpresa&gt;
+               &lt;sucursal&gt;
+                  &lt;id&gt;0&lt;/id&gt;
+                  &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                  &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+               &lt;/sucursal&gt;
+               &lt;contacto&gt;
+                  &lt;tipoContacto&gt;-&lt;/tipoContacto&gt;
+                  &lt;orden&gt;-1&lt;/orden&gt;
+               &lt;/contacto&gt;
+               &lt;afiliacion&gt;
+                  &lt;cantidadVinculacion&gt;4&lt;/cantidadVinculacion&gt;
+                  &lt;categoriaAfiliacion&gt;K&lt;/categoriaAfiliacion&gt;
+                  &lt;motivoRetiro&gt;
+                     &lt;id&gt;7&lt;/id&gt;
+                     &lt;nombre&gt;-&lt;/nombre&gt;
+                  &lt;/motivoRetiro&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;1&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Persona&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;2&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Empresa&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;3&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Sucursal&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;4&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Centro de Costos&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;cmnt&gt;A&lt;/cmnt&gt;
+                  &lt;actualizadoEstado&gt;true&lt;/actualizadoEstado&gt;
+                  &lt;finFecha&gt;2020-11-15T00:00:00&lt;/finFecha&gt;
+                  &lt;ingresoEmpresaFecha&gt;2020-11-01T00:00:00&lt;/ingresoEmpresaFecha&gt;
+                  &lt;inicioFecha&gt;2020-11-01T00:00:00&lt;/inicioFecha&gt;
+                  &lt;modificacionFecha&gt;0001-01-01T00:00:00&lt;/modificacionFecha&gt;
+                  &lt;registroFecha&gt;0001-01-01T00:00:00&lt;/registroFecha&gt;
+                  &lt;retiroFecha&gt;2020-11-15T00:00:00&lt;/retiroFecha&gt;
+                  &lt;valorVinculacion&gt;0&lt;/valorVinculacion&gt;
+                  &lt;variableRetiro&gt;CRETEMP&lt;/variableRetiro&gt;
+                  &lt;programa&gt;
+                     &lt;condicion&gt;1&lt;/condicion&gt;
+                     &lt;id&gt;1011&lt;/id&gt;
+                     &lt;tipoParentesco&gt;EM&lt;/tipoParentesco&gt;
+                     &lt;sigla&gt;CJ&lt;/sigla&gt;
+                     &lt;nombrePrograma&gt;Empresas Afiliadas Caja&lt;/nombrePrograma&gt;
+                     &lt;esPersona&gt;true&lt;/esPersona&gt;
+                     &lt;requisitos/&gt;
+                  &lt;/programa&gt;
+                  &lt;id&gt;24633637&lt;/id&gt;
+                  &lt;clienteID&gt;9999805069127038&lt;/clienteID&gt;
+               &lt;/afiliacion&gt;
+               &lt;programa&gt;
+                  &lt;id&gt;-1&lt;/id&gt;
+                  &lt;clientePropietarioID&gt;0&lt;/clientePropietarioID&gt;
+               &lt;/programa&gt;
+            &lt;/cliente&gt;
+            &lt;atributosComunes/&gt;
+         &lt;/crearVinculacionCliente&gt;
+      &lt;/ser:CrearVinculacionClienteRequest&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</value>
+  </data>
+  <data name="xmlCliente" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;Cliente xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+               &lt;legalID&gt;900877788&lt;/legalID&gt;
+               &lt;tipoIdentificacion&gt;2&lt;/tipoIdentificacion&gt;
+               &lt;id&gt;9999805069127038&lt;/id&gt;
+               &lt;datosEmpresa&gt;
+                  &lt;razonSocial&gt;-&lt;/razonSocial&gt;
+                  &lt;nombreComercial&gt;-&lt;/nombreComercial&gt;
+                  &lt;motivoInactivacion&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                  &lt;/motivoInactivacion&gt;
+               &lt;/datosEmpresa&gt;
+               &lt;sucursal&gt;
+                  &lt;id&gt;0&lt;/id&gt;
+                  &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                  &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+               &lt;/sucursal&gt;
+               &lt;contacto&gt;
+                  &lt;tipoContacto&gt;-&lt;/tipoContacto&gt;
+                  &lt;orden&gt;-1&lt;/orden&gt;
+               &lt;/contacto&gt;
+               &lt;afiliacion&gt;
+                  &lt;cantidadVinculacion&gt;4&lt;/cantidadVinculacion&gt;
+                  &lt;categoriaAfiliacion&gt;K&lt;/categoriaAfiliacion&gt;
+                  &lt;motivoRetiro&gt;
+                     &lt;id&gt;7&lt;/id&gt;
+                     &lt;nombre&gt;-&lt;/nombre&gt;
+                  &lt;/motivoRetiro&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;1&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Persona&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;2&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Empresa&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;3&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Sucursal&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;clienteResponsable&gt;
+                     &lt;tipoResponsable&gt;4&lt;/tipoResponsable&gt;
+                     &lt;centroCostosID&gt;0&lt;/centroCostosID&gt;
+                     &lt;sucursalID&gt;0&lt;/sucursalID&gt;
+                     &lt;id&gt;0&lt;/id&gt;
+                     &lt;nombre&gt;Centro de Costos&lt;/nombre&gt;
+                     &lt;legalID&gt;0&lt;/legalID&gt;
+                     &lt;tipoIdentificacion&gt;0&lt;/tipoIdentificacion&gt;
+                  &lt;/clienteResponsable&gt;
+                  &lt;cmnt&gt;A&lt;/cmnt&gt;
+                  &lt;actualizadoEstado&gt;true&lt;/actualizadoEstado&gt;
+                  &lt;finFecha&gt;2020-11-15T00:00:00&lt;/finFecha&gt;
+                  &lt;ingresoEmpresaFecha&gt;2020-11-01T00:00:00&lt;/ingresoEmpresaFecha&gt;
+                  &lt;inicioFecha&gt;2020-11-01T00:00:00&lt;/inicioFecha&gt;
+                  &lt;modificacionFecha&gt;0001-01-01T00:00:00&lt;/modificacionFecha&gt;
+                  &lt;registroFecha&gt;0001-01-01T00:00:00&lt;/registroFecha&gt;
+                  &lt;retiroFecha&gt;2020-11-15T00:00:00&lt;/retiroFecha&gt;
+                  &lt;valorVinculacion&gt;0&lt;/valorVinculacion&gt;
+                  &lt;variableRetiro&gt;CRETEMP&lt;/variableRetiro&gt;
+                  &lt;programa&gt;
+                     &lt;condicion&gt;1&lt;/condicion&gt;
+                     &lt;id&gt;1011&lt;/id&gt;
+                     &lt;tipoParentesco&gt;EM&lt;/tipoParentesco&gt;
+                     &lt;sigla&gt;CJ&lt;/sigla&gt;
+                     &lt;nombrePrograma&gt;Empresas Afiliadas Caja&lt;/nombrePrograma&gt;
+                     &lt;esPersona&gt;true&lt;/esPersona&gt;
+                     &lt;requisitos/&gt;
+                  &lt;/programa&gt;
+                  &lt;id&gt;24633637&lt;/id&gt;
+                  &lt;clienteID&gt;9999805069127038&lt;/clienteID&gt;
+               &lt;/afiliacion&gt;
+               &lt;programa&gt;
+                  &lt;id&gt;-1&lt;/id&gt;
+                  &lt;clientePropietarioID&gt;0&lt;/clientePropietarioID&gt;
+               &lt;/programa&gt;
+            &lt;/Cliente&gt;</value>
+  </data>
+  <data name="xmlHeader" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;headerMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;userName xmlns="http://www.tibco.com/schemas/Clientes/Resources/EIM/Common/Schema.xsd"&gt;1022948279&lt;/userName&gt;
+  &lt;idAplicacion xmlns="http://www.tibco.com/schemas/Clientes/Resources/EIM/Common/Schema.xsd"&gt;SWPR108&lt;/idAplicacion&gt;
+&lt;/headerMessage&gt;</value>
+  </data>
 </root>
